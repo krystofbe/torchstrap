@@ -1,10 +1,5 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/torchstrap.svg)](https://hex.pm/packages/torchstrap)
 [![Build Status](https://travis-ci.org/krystofbe/torchstrap.svg?branch=master)](https://travis-ci.org/krystofbe/torchstrap)
-[![Deps Status](https://beta.hexfaktor.org/badge/all/github/krystofbe/torchstrap.svg)](https://beta.hexfaktor.org/github/krystofbe/torchstrap)
-
-<p align="center">
-  <img width="489" alt="phoenix_torchstrap_logo" src="https://user-images.githubusercontent.com/7085617/37124853-ef17cec8-221e-11e8-97b9-bb6d13188500.png">
-</p>
 
 # Torchstrap
 
