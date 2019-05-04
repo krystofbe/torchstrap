@@ -1,20 +1,18 @@
 <%%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
-  <fieldset class="torch-panel">
+  <fieldset class="form-group">
     <legend>
       <span>Details</span>
     </legend>
     <%%= if @changeset.action do %>
-      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+      <div class="alert alert-danger" role="alert">Oops, something went wrong! Please check the errors below.</div>
     <%% end %>
-  <%= for {label, input, error} <- inputs, input do %>
-    <div class="torch-form-group">
+  <%= for {label, input, error, form_selector} <- inputs, input do %>
+    <div class="<%= form_selector %>">
       <%= label %>
       <%= input %>
       <%= error %>
     </div>
   <% end %>
-    <div class="torch-submit-form">
-      <%%= submit "Submit", class: "torch-submit-button" %>
-    </div>
+  <%%= submit "Submit", class: "btn btn-primary" %>
   </fieldset>
 <%% end %>

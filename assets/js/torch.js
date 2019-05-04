@@ -118,7 +118,7 @@ window.onload = () => {
   })
 
   slice.call(document.querySelectorAll('.datepicker'), 0).forEach((field) => {
-    new Pikaday({field: field, theme: 'torch-datepicker'})
+    new Pikaday({field: field})
   })
 
   slice.call(document.querySelectorAll('.torch-flash-close'), 0).forEach((field) => {

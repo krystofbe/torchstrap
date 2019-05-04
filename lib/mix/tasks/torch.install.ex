@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Torch.Install do
 
   ## Configuration
 
-      config :torch,
+      config :torchstrap,
         otp_app: :my_app,
         template_format: :eex
 

@@ -26,9 +26,17 @@ defmodule Torch.FlashView do
   def flash_message(conn, type) do
     message = get_flash(conn, type)
 
+    # remap(atom(for bootstrap))
+    type =
+      case type do
+        :error -> :danger
+        :info -> :info
+        :success -> :success
+      end
+
     if message do
-      content_tag :p, class: "torch-flash #{type}" do
-        raw("#{message} <button class='torch-flash-close'>x</button>")
+      content_tag :p, class: "alert alert-#{type} alert-dismissible fade show" do
+        raw("#{message}")
       end
     end
   end

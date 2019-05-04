@@ -4,10 +4,10 @@ defmodule Torch.Config do
   """
 
   def otp_app do
-    Application.get_env(:torch, :otp_app)
+    Application.get_env(:torchstrap, :otp_app)
   end
 
   def template_format do
-    Application.get_env(:torch, :template_format)
+    Application.get_env(:torchstrap, :template_format)
   end
 end

@@ -14,7 +14,7 @@ defmodule Mix.Torch do
       You need to specify an OTP app to generate files within. Either
       configure it as shown below or pass it in via the `--app` option.
 
-          config :torch,
+          config :torchstrap,
             otp_app: :my_app
 
           # Alternatively
@@ -27,7 +27,7 @@ defmodule Mix.Torch do
       Template format is invalid: #{inspect(format)}. Either configure it as
       shown below or pass it via the `--format` option.
 
-          config :torch,
+          config :torchstrap,
             template_format: :slim
 
           # Alternatively
@@ -43,7 +43,7 @@ defmodule Mix.Torch do
   def copy_from(source_dir, mapping) when is_list(mapping) do
     for {source_file_path, target_file_path} <- mapping do
       contents =
-        [Application.app_dir(:torch), source_dir, source_file_path]
+        [Application.app_dir(:torchstrap), source_dir, source_file_path]
         |> Path.join()
         |> File.read!()
 

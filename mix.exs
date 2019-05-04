@@ -3,16 +3,16 @@ defmodule Torch.MixProject do
 
   def project do
     [
-      app: :torch,
+      app: :torchstrap,
       version: "2.0.0-rc.1",
       elixir: "~> 1.5",
       start_permanent: Mix.env() == :prod,
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       name: "Torch",
-      description: "Rapid admin generator for Phoenix",
-      source_url: "https://github.com/danielberkompas/torch",
-      homepage_url: "https://github.com/danielberkompas/torch",
-      test_paths: ["test/mix", "test/torch"],
+      description: "Rapid admin generator with bootstrap styles included for Phoenix",
+      source_url: "https://github.com/krystofbe/torchstrap",
+      homepage_url: "https://github.com/krystofbe/torchstrap",
+      test_paths: ["test/mix", "test/torchstrap"],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -55,10 +55,10 @@ defmodule Torch.MixProject do
 
   defp package do
     [
-      maintainers: ["Infinite Red"],
+      maintainers: ["Krystof Beuermann"],
       licenses: ["MIT"],
       links: %{
-        "Github" => "https://github.com/danielberkompas/torch"
+        "Github" => "https://github.com/krystofbe/torchstrap"
       },
       files: ~w(lib priv mix.exs README.md)
     ]

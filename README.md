@@ -1,28 +1,28 @@
-[![Hex.pm](https://img.shields.io/hexpm/v/torch.svg)](https://hex.pm/packages/torch)
-[![Build Status](https://travis-ci.org/danielberkompas/torch.svg?branch=master)](https://travis-ci.org/danielberkompas/torch)
-[![Deps Status](https://beta.hexfaktor.org/badge/all/github/danielberkompas/torch.svg)](https://beta.hexfaktor.org/github/danielberkompas/torch)
+[![Hex.pm](https://img.shields.io/hexpm/v/torchstrap.svg)](https://hex.pm/packages/torchstrap)
+[![Build Status](https://travis-ci.org/krystofbe/torchstrap.svg?branch=master)](https://travis-ci.org/krystofbe/torchstrap)
+[![Deps Status](https://beta.hexfaktor.org/badge/all/github/krystofbe/torchstrap.svg)](https://beta.hexfaktor.org/github/krystofbe/torchstrap)
 
 <p align="center">
-  <img width="489" alt="phoenix_torch_logo" src="https://user-images.githubusercontent.com/7085617/37124853-ef17cec8-221e-11e8-97b9-bb6d13188500.png">
+  <img width="489" alt="phoenix_torchstrap_logo" src="https://user-images.githubusercontent.com/7085617/37124853-ef17cec8-221e-11e8-97b9-bb6d13188500.png">
 </p>
 
-# Torch
+# Torchstrap
 
-Torch is a rapid admin generator for Phoenix apps. It creates custom templates and relies
-on the Phoenix html generator under the hood.
+Torchstrap is a rapid admin generator for Phoenix apps inspired by daniel berkompas' Torch . It creates custom templates and relies
+on the Bootstrap Framework under the hood.
 
 ![image](https://user-images.githubusercontent.com/7085617/36333572-70e3907e-132c-11e8-9ad2-bd5e98aadc7c.png)
 
 ## Installation
 
-To install Torch, perform the following steps:
+To install Torchstrap, perform the following steps:
 
-1. Add `torch` to your list of dependencies in `mix.exs`. Then, run `mix deps.get`:
+1. Add `torchstrap` to your list of dependencies in `mix.exs`. Then, run `mix deps.get`:
 
 ```elixir
 def deps do
   [
-    {:torch, "~> 2.0.0-rc.1"}
+    {:torchstrap, "~> 2.0.0-rc.1"}
   ]
 end
 ```
@@ -32,22 +32,22 @@ end
 ```elixir
 plug(
   Plug.Static,
-  at: "/torch",
-  from: {:torch, "priv/static"},
+  at: "/torchstrap",
+  from: {:torchstrap, "priv/static"},
   gzip: true,
   cache_control_for_etags: "public, max-age=86400"
 )
 ```
 
-3. Configure Torch by adding the following to your `config.exs`.
+3. Configure Torchstrap by adding the following to your `config.exs`.
 
 ```
-config :torch,
+config :torchstrap,
   otp_app: :my_app_name,
   template_format: "eex" || "slim"
 ```
 
-4. Run `mix torch.install`
+4. Run `mix torchstrap.install`
 
 NOTE: If you choose to use `slim` templates, you will need to [install Phoenix Slim](https://github.com/slime-lang/phoenix_slime).
 
@@ -55,19 +55,19 @@ Now you're ready to start generating your admin! :tada:
 
 ## Usage
 
-Torch uses Phoenix generators under the hood. Torch injects it's own custom templates
+Torchstrap uses Phoenix generator code under the hood. Torchstrap injects it's own custom templates
 into your `priv/static` directory, then runs the `mix phx.gen.html` task with the options
 you passed in. Finally, it uninstalls the custom templates so they don't interfere with
 running the plain Phoenix generators.
 
-In light of that fact, the `torch.gen.html` task takes all the same arguments as the `phx.gen.html`,
+In light of that fact, the `torchstrap.gen.html` task takes all the same arguments as the `phx.gen.html`,
 but does some extra configuration on either end. Checkout `mix help phx.gen.html` for more details
 about the supported options and format.
 
 For example, if we wanted to generate a blog with a `Post` model we could run the following command:
 
 ```bash
-$ mix torch.gen.html Blog Post posts title:string body:text published_at:datetime published:boolean views:integer
+$ mix torchstrap.gen.html Blog Post posts title:string body:text published_at:datetime published:boolean views:integer
 ```
 
 The output would look like:
@@ -81,28 +81,28 @@ Ensure the following is added to your endpoint.ex:
 
     plug(
       Plug.Static,
-      at: "/torch",
-      from: {:torch, "priv/static"},
+      at: "/torchstrap",
+      from: {:torchstrap, "priv/static"},
       gzip: true,
       cache_control_for_etags: "public, max-age=86400",
       headers: [{"access-control-allow-origin", "*"}]
     )
 
-  :fire: Torch generated html for Posts! :fire:
+  :fire: Torchstrap generated html for Posts! :fire:
 ```
 
-Torch also installed an admin layout into your `my_app_web/templates/layout/torch.html.eex`.
+Torchstrap also installed an admin layout into your `my_app_web/templates/layout/torchstrap.html.eex`.
 You will want to update it to include your new navigation link:
 
 ```
-<nav class="torch-nav">
+<nav class="torchstrap-nav">
   <a href="/posts">Posts</a>
 </nav>
 ```
 
 ### Association filters
 
-Torch does not support association filters at this time. [Filtrex](https://github.com/rcdilorenzo/filtrex) does not yet support them.
+Torchstrap does not support association filters at this time. [Filtrex](https://github.com/rcdilorenzo/filtrex) does not yet support them.
 
 You can checkout these two issues to see the latest updates:
 
@@ -162,9 +162,4 @@ the above `eex` to work.
 
 ## Styling
 
-Torch generates two CSS themes you can use: `base.css` & `theme.css`.
-The base styles are basically bare bones, and the theme styles look like the screenshot
-above. Just change the stylesheet link in the `torch.html.eex` layout.
-
-If you want to use the theme, but override the colors, you'll need to include your
-own stylesheet with the specific overrides.
+Torchstrap generates a CSS file you need to use: `base.css`. In the future there will be a custom theme in `base.css`. Please note that Torchstrap doesn't come with Bootstrap. You need to include Bootstrap's CSS yourself. Just change the stylesheet link in the `torchstrap.html.eex` layout.

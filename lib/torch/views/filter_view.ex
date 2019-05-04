@@ -26,7 +26,8 @@ defmodule Torch.FilterView do
       :"#{field}_equals",
       options,
       value: params[to_string(prefix)]["#{field}_equals"],
-      prompt: dgettext("default", "Choose one")
+      prompt: dgettext("default", "Choose one"),
+      class: "form-control form-control-sm"
     )
   end
 
@@ -38,7 +39,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"title_contains" => "test"}}
       ...> filter_select(:post, :title, params) |> safe_to_string()
-      "<select class=\\"filter-type\\" id=\\"filters_\\" name=\\"filters[]\\"><option value=\\"post[title_contains]\\" selected>Contains</option><option value=\\"post[title_equals]\\">Equals</option></select>"
+      "<select class=\\"form-control form-control-sm\\" id=\\"filters_\\" name=\\"filters[]\\"><option value=\\"post[title_contains]\\" selected>Contains</option><option value=\\"post[title_equals]\\">Equals</option></select>"
   """
   @spec filter_select(prefix, field, map) :: Phoenix.HTML.safe()
   def filter_select(prefix, field, params) do
@@ -50,7 +51,10 @@ defmodule Torch.FilterView do
       {dgettext("default", "Equals"), "#{prefix}[#{field}_equals]"}
     ]
 
-    select(:filters, "", opts, class: "filter-type", value: "#{prefix}[#{selected}]")
+    select(:filters, "", opts,
+      class: "form-control form-control-sm",
+      value: "#{prefix}[#{selected}]"
+    )
   end
 
   @doc """
@@ -60,7 +64,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"rating_greater_than" => 0}}
       ...> number_filter_select(:post, :rating, params) |> safe_to_string()
-      "<select class=\\"filter-type\\" id=\\"filters_\\" name=\\"filters[]\\"><option value=\\"post[rating_equals]\\">Equals</option><option value=\\"post[rating_greater_than]\\" selected>Greater Than</option><option value=\\"post[rating_greater_than_or]\\">Greater Than Or Equal</option><option value=\\"post[rating_less_than]\\">Less Than</option></select>"
+      "<select class=\\"form-control form-control-sm\\" id=\\"filters_\\" name=\\"filters[]\\"><option value=\\"post[rating_equals]\\">Equals</option><option value=\\"post[rating_greater_than]\\" selected>Greater Than</option><option value=\\"post[rating_greater_than_or]\\">Greater Than Or Equal</option><option value=\\"post[rating_less_than]\\">Less Than</option></select>"
   """
   @spec number_filter_select(prefix, field, map) :: Phoenix.HTML.safe()
   def number_filter_select(prefix, field, params) do
@@ -74,7 +78,10 @@ defmodule Torch.FilterView do
       {dgettext("default", "Less Than"), "#{prefix}[#{field}_less_than]"}
     ]
 
-    select(:filters, "", opts, class: "filter-type", value: "#{prefix}[#{selected}]")
+    select(:filters, "", opts,
+      class: "form-control form-control-sm",
+      value: "#{prefix}[#{selected}]"
+    )
   end
 
   @doc """
@@ -90,7 +97,12 @@ defmodule Torch.FilterView do
   def filter_number_input(prefix, field, params) do
     prefix_str = to_string(prefix)
     {name, value} = find_param(params[prefix_str], field, :number)
-    text_input(prefix, String.to_atom(name), value: value, type: "number")
+
+    text_input(prefix, String.to_atom(name),
+      value: value,
+      type: "number",
+      class: "form-control form-control-sm"
+    )
   end
 
   @doc """
@@ -106,7 +118,7 @@ defmodule Torch.FilterView do
   def filter_string_input(prefix, field, params) do
     prefix_str = to_string(prefix)
     {name, value} = find_param(params[prefix_str], field)
-    text_input(prefix, String.to_atom(name), value: value)
+    text_input(prefix, String.to_atom(name), value: value, class: "form-control form-control-sm")
   end
 
   @doc """
@@ -171,7 +183,8 @@ defmodule Torch.FilterView do
       :"#{field}_equals",
       [{"True", true}, {"False", false}],
       value: value,
-      prompt: dgettext("default", "Choose one")
+      prompt: dgettext("default", "Choose one"),
+      class: "form-control form-control-sm"
     )
   end
 
