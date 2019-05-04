@@ -6,8 +6,6 @@
 Torchstrap is a rapid admin generator for Phoenix apps inspired by daniel berkompas' Torch . It creates custom templates and relies
 on the Bootstrap Framework under the hood.
 
-![image](https://user-images.githubusercontent.com/7085617/36333572-70e3907e-132c-11e8-9ad2-bd5e98aadc7c.png)
-
 ## Installation
 
 To install Torchstrap, perform the following steps:
