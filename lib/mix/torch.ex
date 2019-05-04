@@ -1,6 +1,7 @@
 defmodule Mix.Torch do
   @moduledoc false
 
+  alias Mix.Generator
   alias Torch.Config
 
   def parse_config!(task, args) do
@@ -47,7 +48,7 @@ defmodule Mix.Torch do
         |> Path.join()
         |> File.read!()
 
-      Mix.Generator.create_file(target_file_path, contents)
+      Generator.create_file(target_file_path, contents)
     end
   end
 

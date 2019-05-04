@@ -10,23 +10,28 @@ defmodule Mix.Tasks.Torch.Gen.Html do
       mix torch.gen.html Accounts User users --no-schema
   """
 
+  alias Mix.Phoenix
   alias Mix.Phoenix.{Context, Schema}
+  alias Mix.Project
   alias Mix.Tasks.Phx.Gen
+  alias Mix.Tasks.Phx.Gen.Html
+  alias Mix.Torch
+
   @commands ~w[phx.gen.html phx.gen.context]
 
   def run(args) do
-    %{format: format} = Mix.Torch.parse_config!("torch.gen.html", args)
+    %{format: format} = Torch.parse_config!("torch.gen.html", args)
 
     # Inject the torch templates for the generator into the priv/
     # directory so they will be picked up by the Phoenix generator
-    Enum.each(@commands, &Mix.Torch.inject_templates(&1, format))
+    Enum.each(@commands, &Torch.inject_templates(&1, format))
 
     # Run the Phoenix generator
     phx_gen_html(args)
 
     # Remove the injected templates from priv/ so they will not
     # affect future Phoenix generator commands
-    Enum.each(@commands, &Mix.Torch.remove_templates/1)
+    Enum.each(@commands, &Torch.remove_templates/1)
 
     Mix.shell().info("""
     Ensure the following is added to your endpoint.ex:
@@ -51,7 +56,7 @@ defmodule Mix.Tasks.Torch.Gen.Html do
   end
 
   def phx_gen_html(args) do
-    if Mix.Project.umbrella?() do
+    if Project.umbrella?() do
       Mix.raise("mix phx.gen.html can only be run inside an application directory")
     end
 
@@ -59,13 +64,13 @@ defmodule Mix.Tasks.Torch.Gen.Html do
     Gen.Context.prompt_for_code_injection(context)
 
     binding = [context: context, schema: schema, inputs: inputs(schema)]
-    paths = Mix.Phoenix.generator_paths()
+    paths = Phoenix.generator_paths()
 
     prompt_for_conflicts(context)
 
     context
-    |> Mix.Tasks.Phx.Gen.Html.copy_new_files(paths, binding)
-    |> Mix.Tasks.Phx.Gen.Html.print_shell_instructions()
+    |> Html.copy_new_files(paths, binding)
+    |> Html.print_shell_instructions()
   end
 
   defp inputs(%Schema{} = schema) do
@@ -144,9 +149,9 @@ defmodule Mix.Tasks.Torch.Gen.Html do
 
   defp prompt_for_conflicts(context) do
     context
-    |> Mix.Tasks.Phx.Gen.Html.files_to_be_generated()
+    |> Html.files_to_be_generated()
     |> Kernel.++(context_files(context))
-    |> Mix.Phoenix.prompt_for_conflicts()
+    |> Phoenix.prompt_for_conflicts()
   end
 
   defp context_files(%Context{generate?: true} = context) do

@@ -1,7 +1,6 @@
 defmodule Mix.Tasks.Torch.Install do
   @moduledoc """
   Installs torch layout to your `_web/templates` directory.
-
   ## Configuration
 
       config :torchstrap,
@@ -19,11 +18,12 @@ defmodule Mix.Tasks.Torch.Install do
 
       mix torch.install --format slim --app my_app
   """
+  alias Mix.Torch
 
   def run(args) do
-    %{format: format, otp_app: otp_app} = Mix.Torch.parse_config!("torch.install", args)
+    %{format: format, otp_app: otp_app} = Torch.parse_config!("torch.install", args)
 
-    Mix.Torch.copy_from("priv/templates/#{format}", [
+    Torch.copy_from("priv/templates/#{format}", [
       {"layout.html.#{format}", "lib/#{otp_app}_web/templates/layout/torch.html.#{format}"}
     ])
   end

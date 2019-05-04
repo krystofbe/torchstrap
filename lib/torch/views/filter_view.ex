@@ -17,7 +17,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"category_id_equals" => 1}}
       ...> filter_assoc_select(:post, :category_id, [{"Articles", 1}], params) |> safe_to_string()
-      "<select id=\\"post_category_id_equals\\" name=\\"post[category_id_equals]\\"><option value=\\"\\">Choose one</option><option value=\\"1\\" selected>Articles</option></select>"
+      "<select class=\\"form-control form-control-sm\\" id=\\"post_category_id_equals\\" name=\\"post[category_id_equals]\\"><option value=\\"\\">Choose one</option><option value=\\"1\\" selected>Articles</option></select>"
   """
   @spec filter_assoc_select(prefix, field, list, map) :: Phoenix.HTML.safe()
   def filter_assoc_select(prefix, field, options, params) do
@@ -91,7 +91,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"rating_equals" => 5}}
       ...> filter_number_input(:post, :rating, params) |> safe_to_string()
-      "<input id=\\"post_rating_equals\\" name=\\"post[rating_equals]\\" type=\\"number\\" value=\\"5\\">"
+      "<input class=\\"form-control form-control-sm\\" id=\\"post_rating_equals\\" name=\\"post[rating_equals]\\" type=\\"number\\" value=\\"5\\">"
   """
   @spec filter_number_input(prefix, field, map) :: Phoenix.HTML.safe()
   def filter_number_input(prefix, field, params) do
@@ -112,7 +112,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"title_contains" => "test"}}
       iex> filter_string_input(:post, :title, params) |> safe_to_string()
-      "<input id=\\"post_title_contains\\" name=\\"post[title_contains]\\" type=\\"text\\" value=\\"test\\">"
+      "<input class=\\"form-control form-control-sm\\" id=\\"post_title_contains\\" name=\\"post[title_contains]\\" type=\\"text\\" value=\\"test\\">"
   """
   @spec filter_string_input(prefix, field, map) :: Phoenix.HTML.safe()
   def filter_string_input(prefix, field, params) do
@@ -168,7 +168,7 @@ defmodule Torch.FilterView do
 
       iex> params = %{"post" => %{"draft_equals" => "false"}}
       iex> filter_boolean_input(:post, :draft, params) |> safe_to_string()
-      "<select id=\\"post_draft_equals\\" name=\\"post[draft_equals]\\"><option value=\\"\\">Choose one</option><option value=\\"true\\">True</option><option value=\\"false\\" selected>False</option></select>"
+      "<select class=\\"form-control form-control-sm\\" id=\\"post_draft_equals\\" name=\\"post[draft_equals]\\"><option value=\\"\\">Choose one</option><option value=\\"true\\">True</option><option value=\\"false\\" selected>False</option></select>"
   """
   @spec filter_boolean_input(prefix, field, map) :: Phoenix.HTML.safe()
   def filter_boolean_input(prefix, field, params) do

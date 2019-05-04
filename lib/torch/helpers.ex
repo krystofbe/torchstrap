@@ -2,7 +2,7 @@ defmodule Torch.Helpers do
   @moduledoc """
   Provides helper functions for Torch-generated controllers.
   """
-
+  alias Scrivener.Config
   @type params :: map
 
   @doc """
@@ -55,6 +55,6 @@ defmodule Torch.Helpers do
   """
   @spec paginate(Ecto.Queryable.t(), Ecto.Repo.t(), params, Keyword.t()) :: %Scrivener.Page{}
   def paginate(query, repo, params, settings \\ [page_size: 10]) do
-    Scrivener.paginate(query, Scrivener.Config.new(repo, settings, params))
+    Scrivener.paginate(query, Config.new(repo, settings, params))
   end
 end

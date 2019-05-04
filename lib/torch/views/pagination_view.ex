@@ -16,7 +16,7 @@ defmodule Torch.PaginationView do
   ## Examples
 
       iex> prev_link(%Plug.Conn{params: %{}}, 2) |> safe_to_string()
-      "<a href=\\"?page=1\\">&lt; Prev</a>"
+      "<a class=\\"page-link\\" href=\\"?page=1\\">&lt; Prev</a>"
 
   If the current page is 1, returns `nil`:
 
@@ -40,7 +40,7 @@ defmodule Torch.PaginationView do
   ## Examples
 
       iex> next_link(%Plug.Conn{params: %{}}, 1, 2) |> safe_to_string()
-      "<a href=\\"?page=2\\">Next &gt;</a>"
+      "<a class=\\"page-link\\" href=\\"?page=2\\">Next &gt;</a>"
 
       iex> next_link(%Plug.Conn{}, 2, 2)
       nil

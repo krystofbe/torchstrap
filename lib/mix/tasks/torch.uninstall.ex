@@ -7,8 +7,10 @@ defmodule Mix.Tasks.Torch.Uninstall do
       mix torch.uninstall
   """
 
+  alias Mix.Torch
+
   def run(args) do
-    %{format: format, otp_app: otp_app} = Mix.Torch.parse_config!("torch.uninstall", args)
+    %{format: format, otp_app: otp_app} = Torch.parse_config!("torch.uninstall", args)
 
     paths = [
       "priv/templates/phx.gen.html/controller_test.exs",
