@@ -17,12 +17,12 @@ on the Bootstrap Framework under the hood.
 
 To install Torchstrap, perform the following steps:
 
-1. Add `torchstrap` to your list of dependencies in `mix.exs`. Then, run `mix deps.get`:
+1. For now, there is no package available on hex. Add `torchstrap` to your list of dependencies in `mix.exs`. Then, run `mix deps.get`:
 
 ```elixir
 def deps do
   [
-    {:torchstrap, "~> 2.0.0-rc.1"}
+    {:torchstrap, github: "krystofbe/torchstrap"}
   ]
 end
 ```
