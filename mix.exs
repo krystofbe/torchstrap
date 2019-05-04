@@ -43,12 +43,13 @@ defmodule Torch.MixProject do
       {:credo, "~> 0.5", only: [:dev, :test]},
       {:ex_doc, ">= 0.0.0", only: [:dev, :test]},
       {:excoveralls, ">= 0.0.0", only: [:dev, :test]},
-      {:filtrex, "~> 0.4.1"},
+      {:postgrex, ">= 0.0.0-rc"},
+      {:filtrex, "~> 0.4.3"},
       {:gettext, "~> 0.16"},
       {:jason, "~> 1.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix, "~> 1.4"},
-      {:scrivener_ecto, ">= 1.2.1"},
+      {:scrivener_ecto, "~> 2.0"},
       {:timex, "~> 3.1"}
     ]
   end
